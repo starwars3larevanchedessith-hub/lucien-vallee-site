@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Médiathèque personnelle de Lucien Vallée dédiée aux synthétiseurs et aux sons électroniques.">
+    <title>Lucien Vallée — Médiathèque des Synthétiseurs</title>
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent: #000000;
+            --border-color: #e5e5e7;
+            --card-bg: #f5f5f7;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --transition-smooth: all 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* --- LAYOUT --- */
+        section {
+            padding: 120px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+
+        nav {
+            width: 100%;
+            max-width: 1100px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* --- HERO --- */
+        #hero {
+            padding-top: 180px;
+            text-align: center;
+        }
+
+        .label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+            font-weight: 400;
+        }
+
+        .portrait-container {
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .portrait-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: var(--transition-smooth);
+        }
+
+        .portrait-container img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--text-primary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* --- SECTION TITLES --- */
+        .section-title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        /* --- ABOUT --- */
+        #about .content {
+            font-size: 24px;
+            line-height: 1.6;
+            max-width: 800px;
+            color: var(--text-primary);
+        }
+
+        /* --- PASSION --- */
+        .passion-phrase {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 60px;
+            max-width: 800px;
+        }
+
+        .passion-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .passion-card {
+            padding: 40px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .passion-card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .passion-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* --- MEDIATHEQUE --- */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .media-card {
+            padding: 40px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            transition: var(--transition-smooth);
+            cursor: default;
+        }
+
+        .media-card:hover {
+            border-color: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transform: translateY(-5px);
+        }
+
+        .media-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .media-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* --- INFLUENCES --- */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            padding: 8px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: var(--transition-smooth);
+        }
+
+        .tag:hover {
+            background: var(--text-primary);
+            color: #fff;
+        }
+
+        .influence-text {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 800px;
+        }
+
+        /* --- PROJET --- */
+        .project-intro {
+            font-size: 22px;
+            margin-bottom: 60px;
+            max-width: 800px;
+        }
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .roadmap-item {
+            position: relative;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--text-primary);
+            border-radius: 50%;
+        }
+
+        .roadmap-num {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .roadmap-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 100px 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .footer-sub {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* --- ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-smooth);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            h1 { font-size: 48px; }
+            .passion-grid, .media-grid { grid-template-columns: repeat(2, 1fr); }
+            .roadmap { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            h1 { font-size: 36px; }
+            .subtitle { font-size: 18px; }
+            .passion-grid, .media-grid, .roadmap { grid-template-columns: 1fr; }
+            section { padding: 80px 20px; }
+            .section-title { font-size: 32px; }
+            #about .content { font-size: 18px; }
+            .passion-phrase { font-size: 24px; }
+        }
+
+        /* Button Back to Top */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--text-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+            z-index: 999;
+            border: none;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <nav>
+            <a href="#" class="logo">Lucien Vallée</a>
+            <div class="nav-links">
+                <a href="#about">À propos</a>
+                <a href="#passion">Passion</a>
+                <a href="#media">Médiathèque</a>
+                <a href="#influences">Influences</a>
+                <a href="#project">Projet</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <div class="reveal">
+                <span class="label">Studio IA · PEM B3</span>
+                <h1>Le monde des synthétiseurs</h1>
+                <p class="subtitle">Une médiathèque personnelle autour des sons électroniques, des machines iconiques et des influences qui façonnent l’imaginaire musical.</p>
+                
+                <div class="portrait-container">
+                    <img src="photo.jpg" alt="Portrait de Lucien Vallée">
+                </div>
+
+                <a href="#about" class="btn-cta">Découvrir mon univers</a>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <h2 class="section-title reveal">À propos de moi</h2>
+            <div class="content reveal">
+                <p>Je m’appelle Lucien Vallée, et je m’intéresse aux synthétiseurs, à leurs sons particuliers et aux atmosphères qu’ils permettent de créer. J’aime découvrir comment un simple son électronique peut donner une identité forte à un morceau. À travers ce rayon, je veux partager des musiques, des artistes, des machines et des influences qui montrent toute la richesse de cet univers sonore.</p>
+            </div>
+        </section>
+
+        <!-- PASSION SECTION -->
+        <section id="passion">
+            <h2 class="section-title reveal">Pourquoi les synthétiseurs ?</h2>
+            <p class="passion-phrase reveal">Ma passion, c’est explorer les sons uniques des synthétiseurs et comprendre comment ils façonnent l’ambiance d’un morceau.</p>
+            
+            <div class="passion-grid">
+                <div class="passion-card reveal">
+                    <h3>Texture sonore</h3>
+                    <p>Les synthétiseurs permettent de créer des sons impossibles à produire avec des instruments classiques.</p>
+                </div>
+                <div class="passion-card reveal">
+                    <h3>Identité musicale</h3>
+                    <p>Une nappe, une basse ou un lead synthétique peut immédiatement donner une couleur à un morceau.</p>
+                </div>
+                <div class="passion-card reveal">
+                    <h3>Imaginaire visuel</h3>
+                    <p>Les synthés évoquent des mondes futuristes, nocturnes, rétro ou cinématographiques.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEDIATHEQUE SECTION -->
+        <section id="media">
+            <h2 class="section-title reveal">Ma médiathèque idéale</h2>
+            <div class="media-grid">
+                <!-- Card 1 -->
+                <div class="media-card reveal">
+                    <h3>Morceaux cultes</h3>
+                    <p>Des titres où le synthétiseur devient l’élément central de l’émotion.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="media-card reveal">
+                    <h3>Artistes influents</h3>
+                    <p>Des artistes qui ont construit une identité sonore grâce aux machines.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="media-card reveal">
+                    <h3>Machines iconiques</h3>
+                    <p>Des synthétiseurs mythiques qui ont marqué l’histoire de la musique.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="media-card reveal">
+                    <h3>Ambiances visuelles</h3>
+                    <p>Des pochettes, clips et univers graphiques liés aux sons électroniques.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="media-card reveal">
+                    <h3>Bandes originales</h3>
+                    <p>Des musiques de films où les synthés créent tension, mystère ou nostalgie.</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="media-card reveal">
+                    <h3>Expérimentations</h3>
+                    <p>Des sons étranges, imparfaits, futuristes ou inattendus.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INFLUENCES SECTION -->
+        <section id="influences">
+            <h2 class="section-title reveal">Mes influences</h2>
+            <div class="tag-container reveal">
+                <span class="tag">Synthétiseurs analogiques</span>
+                <span class="tag">Musique électronique</span>
+                <span class="tag">Pop expérimentale</span>
+                <span class="tag">Bandes originales de films</span>
+                <span class="tag">Années 80</span>
+                <span class="tag">Ambient</span>
+                <span class="tag">House</span>
+                <span class="tag">Techno mélodique</span>
+                <span class="tag">Jeux vidéo rétro</span>
+                <span class="tag">Science-fiction</span>
+            </div>
+            <p class="influence-text reveal">
+                Mon univers se construit entre des références musicales, visuelles et technologiques. Les synthétiseurs m’intéressent parce qu’ils ne sont pas seulement des instruments : ce sont aussi des machines à créer des atmosphères.
+            </p>
+        </section>
+
+        <!-- PROJET SECTION -->
+        <section id="project">
+            <h2 class="section-title reveal">Mon projet cette année</h2>
+            <p class="project-intro reveal">
+                Cette année, je veux créer une médiathèque numérique dédiée aux synthétiseurs, avec des morceaux marquants, des artistes influents, des machines iconiques et des références visuelles ou sonores qui racontent l’histoire de cet instrument.
+            </p>
+            <div class="roadmap reveal">
+                <div class="roadmap-item">
+                    <span class="roadmap-num">01</span>
+                    <p class="roadmap-text">Sélectionner des morceaux</p>
+                </div>
+                <div class="roadmap-item">
+                    <span class="roadmap-num">02</span>
+                    <p class="roadmap-text">Identifier les artistes et machines</p>
+                </div>
+                <div class="roadmap-item">
+                    <span class="roadmap-num">03</span>
+                    <p class="roadmap-text">Créer une identité éditoriale</p>
+                </div>
+                <div class="roadmap-item">
+                    <span class="roadmap-num">04</span>
+                    <p class="roadmap-text">Publier une médiathèque claire et interactive</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-name">Lucien Vallée — Médiathèque des synthétiseurs</div>
+        <div class="footer-sub">Un rayon personnel pour explorer les sons, les machines et les imaginaires électroniques.</div>
+    </footer>
+
+    <button id="backToTop" title="Retour en haut">↑</button>
+
+    <script>
+        /* --- REVEAL ANIMATION ON SCROLL --- */
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        /* --- HEADER SCROLL EFFECT --- */
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.height = '60px';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.height = '50px';
+                header.style.background = 'rgba(255, 255, 255, 0.8)';
+            }
+        });
+
+        /* --- BACK TO TOP BUTTON --- */
+        const btt = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                btt.classList.add('show');
+            } else {
+                btt.classList.remove('show');
+            }
+        });
+
+        btt.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* --- SMOOTH NAVIGATION --- */
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === "#") return;
+                const targetElement = document.querySelector(targetId);
+                const headerOffset = 60;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            });
+        });
+    </script>
+</body>
+</html>
