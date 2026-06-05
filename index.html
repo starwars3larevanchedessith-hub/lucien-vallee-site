@@ -248,6 +248,28 @@
             color: var(--text-secondary);
         }
 
+        /* --- BD SECTION --- */
+        .bd-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .bd-item {
+            overflow: hidden;
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+        }
+        .bd-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition-smooth);
+        }
+        .bd-item:hover img {
+            transform: scale(1.03);
+        }
+
         /* --- INFLUENCES --- */
         .tag-container {
             display: flex;
@@ -352,7 +374,7 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             h1 { font-size: 48px; }
-            .passion-grid, .media-grid { grid-template-columns: repeat(2, 1fr); }
+            .passion-grid, .media-grid, .bd-grid { grid-template-columns: repeat(2, 1fr); }
             .roadmap { grid-template-columns: repeat(2, 1fr); gap: 40px; }
         }
 
@@ -360,7 +382,7 @@
             .nav-links { display: none; }
             h1 { font-size: 36px; }
             .subtitle { font-size: 18px; }
-            .passion-grid, .media-grid, .roadmap { grid-template-columns: 1fr; }
+            .passion-grid, .media-grid, .roadmap, .bd-grid { grid-template-columns: 1fr; }
             section { padding: 80px 20px; }
             .section-title { font-size: 32px; }
             #about .content { font-size: 18px; }
@@ -404,6 +426,7 @@
                 <a href="#passion">Passion</a>
                 <a href="#media">Médiathèque</a>
                 <a href="#influences">Influences</a>
+                <a href="#bd">BD</a>
                 <a href="#project">Projet</a>
             </div>
         </nav>
@@ -509,6 +532,20 @@
             <p class="influence-text reveal">
                 Mon univers se construit entre des références musicales, visuelles et technologiques. Les synthétiseurs m’intéressent parce qu’ils ne sont pas seulement des instruments : ce sont aussi des machines à créer des atmosphères.
             </p>
+        </section>
+
+        <!-- BD SECTION -->
+        <section id="bd">
+            <h2 class="section-title reveal">BD & Univers Visuel</h2>
+            <p class="subtitle reveal" style="text-align: left; margin: 0 0 40px 0;">L'esthétique graphique qui nourrit mon approche des sons électroniques.</p>
+            <div class="bd-grid">
+                <div class="bd-item reveal">
+                    <img src="https://res.cloudinary.com/dz6qfxmfe/image/upload/v1780663574/6abbea57-dcb4-4186-b116-1cef11ae7d97_tylr2p.png" alt="Illustration BD 1">
+                </div>
+                <div class="bd-item reveal">
+                    <img src="https://res.cloudinary.com/dz6qfxmfe/image/upload/v1780663679/9bb00d7c-269b-427f-b5d7-bdce8070e20a_w6ehxa.png" alt="Illustration BD 2">
+                </div>
+            </div>
         </section>
 
         <!-- PROJET SECTION -->
